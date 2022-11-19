@@ -1,13 +1,20 @@
-﻿string? username = string.Empty;
+﻿
+
+string? username = string.Empty;
 string? password = string.Empty;
 bool login = false;
 while (true) 
 {
+    string[] users = {};
+    var passwords = new List<string>();
+
     string? arg = Console.ReadLine();
     if (arg == "signup")
     {
         username = Console.ReadLine();
+        users.Append(username);
         password = Console.ReadLine();
+        passwords.Add($"Username: {username}, Password: {password}");
         Console.WriteLine("Signup successful!");
         continue;
         
@@ -44,7 +51,7 @@ while (true)
         break;
     }
 
-    if (login == true) 
+    while (login == true) 
     {
         Console.Write("What do you want to do? ");
         string? answer = Console.ReadLine();
@@ -78,7 +85,15 @@ while (true)
     }
     if (arg == "help") 
     {
-        Console.WriteLine("Commands: #.signup, #.login, #.credentials #.exit #.help");
+        Console.WriteLine("Commands: signup, login, credentials, exit, help");
+    }
+
+    if (arg == "users") 
+    {
+        for (int i = 0; i < passwords.Count; i++)
+        {
+            Console.WriteLine(passwords[i]);
+        }
     }
 }
 
